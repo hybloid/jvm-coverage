@@ -39,7 +39,7 @@ jobs:
           cp -R JVM/intellij-coverage-agent/gradle/build/kover/bin-reports/* .qodana/code-coverage/
 
       - name: Archive coverage data
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: gradle-coverage-data.zip
           path: .qodana/code-coverage
