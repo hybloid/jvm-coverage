@@ -36,7 +36,7 @@ jobs:
       - name: Create coverage-data directory and copy contents
         run: |
           mkdir -p .qodana/code-coverage
-          cp -R JVM/intellij-coverage-agent/gradle/build/kover/bin-reports/* .qodana/code-coverage/
+          cp -R build/kover/bin-reports/* .qodana/code-coverage/
 
       - name: Archive coverage data
         uses: actions/upload-artifact@v4
@@ -51,3 +51,4 @@ jobs:
         with:
           args: "--linter,jetbrains/qodana-jvm:latest"
           pr-mode: true
+          upload-result: true
