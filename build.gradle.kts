@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.8.21"
-    id("org.jetbrains.kotlinx.kover") version "0.7.2"
+    id("org.jetbrains.kotlinx.kover") version "0.9.0-RC"
     application
 }
 
@@ -17,22 +17,14 @@ dependencies {
     testImplementation(kotlin("test"))
 }
 
-koverReport {
-    filters {
-        includes {
-            classes("org.example.*")
+kover {
+    currentProject {
+        instrumentation {
+            includedClasses.add("org.example.*")
         }
     }
-    // uncomment to fall back to XML reports. Not supported by Qodana IDE plugin
-    /*
-    defaults {
-        xml {
-            onCheck = false
-            setReportFile(layout.projectDirectory.file(".qodana/code-coverage/result.xml").asFile)
-        }
-    }
-    */
 }
+
 
 tasks.test {
     useJUnitPlatform()
